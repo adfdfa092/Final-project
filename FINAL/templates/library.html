@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бібліотека</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="{{ url_for('author') }}">Про автора</a></li>
+                <li><a href="{{ url_for('library') }}">Бібліотека</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Додати нову книгу</h2>
+            <form action="{{ url_for('add_book') }}" method="POST">
+                <div class="form-group">
+                    <label for="title">Назва книги</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Автор</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Опис</label>
+                    <textarea id="description" name="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="year">Рік видання</label>
+                    <input type="number" id="year" name="year">
+                </div>
+                <div class="form-group">
+                    <label for="image_url">URL картинки</label>
+                    <input type="text" id="image_url" name="image_url" placeholder="https://image.jpg">
+                </div>
+                <button type="submit" class="btn">Додати книгу</button>
+            </form>
+        </div>
+
+        <h2>Список книг</h2>
+        <div class="book-grid">
+            {% for book in books %}
+            <div class="book-card">
+                {% if book.image_url %}
+                    <img src="{{ book.image_url }}" alt="{{ book.title }}" class="book-image">
+                {% else %}
+                    <div class="book-image" style="display: flex; align-items: center; justify-content: center; color: #94a3b8;">Немає фото</div>
+                {% endif %}
+                <div class="book-info">
+                    <h3>{{ book.title }}</h3>
+                    <p style="color: #64748b; margin-bottom: 0.5rem;">{{ book.author }} ({{ book.year }})</p>
+                    <div class="book-actions">
+                        <a href="{{ url_for('book_detail', id=book.id) }}" class="btn">Детальніше</a>
+                        <a href="{{ url_for('delete_book', id=book.id) }}" class="btn btn-danger">Видалити</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p>Бібліотека поки що порожня. Додайте свою першу книгу!</p>
+            {% endfor %}
+        </div>
+    </main>
+
+</body>
+</html>

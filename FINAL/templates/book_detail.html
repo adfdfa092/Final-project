@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} - Моя Бібліотека</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="{{ url_for('author') }}">Про автора</a></li>
+                <li><a href="{{ url_for('library') }}">Бібліотека</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="detail-container">
+            {% if book.image_url %}
+                <img src="{{ book.image_url }}" alt="{{ book.title }}" class="detail-image">
+            {% endif %}
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">{{ book.title }}</h1>
+                <h3 style="color: #64748b; margin-bottom: 1.5rem;">Автор: {{ book.author }}</h3>
+                
+                <p><strong>Рік видання:</strong> {{ book.year or 'Не вказано' }}</p>
+                <p style="margin-top: 1rem; line-height: 1.6;"><strong>Опис:</strong><br> 
+                    {{ book.description or 'Опис відсутній.' }}
+                </p>
+                
+                <div style="margin-top: 2rem;">
+                    <a href="{{ url_for('library') }}" class="btn">← Повернутися до бібліотеки</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

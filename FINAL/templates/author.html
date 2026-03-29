@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про автора</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="{{ url_for('author') }}">Про автора</a></li>
+                <li><a href="{{ url_for('library') }}">Бібліотека</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Про автора</h2>
+            <div style="margin-top: 1.5rem; line-height: 1.8;">
+                <p><strong>Ім'я:</strong> Іван Хахуда</p>
+                <p><strong>Місто:</strong> Київ</p>
+                <p><strong>Чим займається:</strong> вчуся в 9 класі, займаюся програмуванням на PYTON</p>
+                <p><strong>Чому вивчає програмування:</strong> Це моє хобі</p>
+                <br>
+                <h3>Контакти</h3>
+                <p><strong>Email:</strong> Khakhuda@gmail.com</p>
+                <p><strong>Telegram:</strong> @Khakhuda</p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
